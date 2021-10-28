@@ -22,6 +22,11 @@ namespace InvoicingRepository.Repository
 
         #region Methods
 
+        /// <summary>
+        /// Crea un nuevo vendedor
+        /// </summary>
+        /// <param name="pSeller"></param>
+        /// <returns> Retorna true si la creacion en correcta o false si se presento algún error al momento de la creación </returns>
         public bool Create(Seller pSeller)
         {
             bool bolResult = false;
@@ -62,6 +67,11 @@ namespace InvoicingRepository.Repository
             }
         }
 
+        /// <summary>
+        /// Actualizar la columna "State" del vendedor para inabilitarlo
+        /// </summary>
+        /// <param name="pDocument"></param>
+        /// <returns> Retorna true si la eliminación en correcta o false si se presento algún error al momento de la eliminación </returns>
         public bool Delete(int pDocument)
         {
             bool bolResult = false;
@@ -112,6 +122,10 @@ namespace InvoicingRepository.Repository
             }
         }
 
+        /// <summary>
+        /// Obtener todos los vendedores
+        /// </summary>
+        /// <returns> Retorna una lista de todos los vendedores que esten activos </returns>
         public IEnumerable<Seller> GetAll()
         {
             List<Seller> lstSeller = new();
@@ -152,6 +166,11 @@ namespace InvoicingRepository.Repository
             }
         }
 
+        /// <summary>
+        /// Obtener un vendedor por su documento
+        /// </summary>
+        /// <param name="pDocument"></param>
+        /// <returns> Retorna la información del vendedor </returns>
         public Seller GetByDocument(int pDocument)
         {
             Seller objSeller = new();
@@ -191,6 +210,11 @@ namespace InvoicingRepository.Repository
             }
         }
 
+        /// <summary>
+        /// Actualizar la informacion de un vendedor
+        /// </summary>
+        /// <param name="pSeller"></param>
+        /// <returns> Retorna true si la actualización en correcta o false si se presento algún error al momento de la actualización </returns>
         public bool Update(Seller pSeller)
         {
             bool bolResult = false;

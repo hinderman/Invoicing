@@ -231,7 +231,7 @@ namespace InvoicingRepository.Repository
                             CommandType = CommandType.StoredProcedure
                         };
 
-                        _SqlCommand.Parameters.AddWithValue("@CustomerJson", strCategoryJson);
+                        _SqlCommand.Parameters.AddWithValue("@CategoryJson", strCategoryJson);
 
                         using (SqlDataReader _SqlDataReader = _SqlCommand.ExecuteReader())
                         {
