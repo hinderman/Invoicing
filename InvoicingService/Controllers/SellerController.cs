@@ -8,45 +8,45 @@ namespace InvoicingService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CustomerController : ControllerBase
+    public class SellerController : ControllerBase
     {
-        private readonly CustomerService _Service;
-        public CustomerController(ICustomerRepository pICustomerRepository)
+        private readonly SellerService _Service;
+        public SellerController(ISellerRepository pISellerRepository)
         {
-            _Service = new(pICustomerRepository);
+            _Service = new(pISellerRepository);
         }
 
         [HttpPost]
-        [Route("Api/Customer/Create")]
-        public bool Create([FromBody] Customer pCustomer)
+        [Route("Api/Seller/Create")]
+        public bool Create([FromBody] Seller pSeller)
         {
-            return _Service.Create(pCustomer);
+            return _Service.Create(pSeller);
         }
 
         [HttpDelete]
-        [Route("Api/Customer/Delete")]
+        [Route("Api/Seller/Delete")]
         public bool Delete(int pDocument)
         {
             return _Service.Delete(pDocument);
         }
 
         [HttpGet]
-        [Route("Api/Customer/GetAll")]
-        public IEnumerable<Customer> GetAll()
+        [Route("Api/Seller/GetAll")]
+        public IEnumerable<Seller> GetAll()
         {
             return _Service.GetAll();
         }
 
         [HttpGet]
-        [Route("Api/Customer/GetByDocument")]
-        public Customer GetByDocument(int pDocument)
+        [Route("Api/Seller/GetByDocument")]
+        public Seller GetByDocument(int pDocument)
         {
             return _Service.GetByDocument(pDocument);
         }
 
         [HttpPut]
-        [Route("Api/Customer/Update")]
-        public bool Update(Customer pCustomer)
+        [Route("Api/Seller/Update")]
+        public bool Update(Seller pCustomer)
         {
             return _Service.Update(pCustomer);
         }
