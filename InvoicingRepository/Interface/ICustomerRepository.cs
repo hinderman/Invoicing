@@ -11,7 +11,7 @@ namespace InvoicingRepository.Interface
 
         Customer GetByDocument(int pDocument);
 
-        bool Delete(int pCustomerID);
+        bool Delete(int pDocument);
 
         bool Update(Customer pCustomer);
     }

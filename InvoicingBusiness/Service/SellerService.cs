@@ -4,20 +4,20 @@ using System.Collections.Generic;
 
 namespace InvoicingBusiness.Service
 {
-    public class CustomerService
+    public class SellerService
     {
-        private readonly ICustomerRepository _Repository;
+        private readonly ISellerRepository _Repository;
 
-        public CustomerService(ICustomerRepository pICustomerRepository)
+        public SellerService(ISellerRepository pISellerRepository)
         {
-            _Repository = pICustomerRepository;
+            _Repository = pISellerRepository;
         }
 
         #region Methods
 
-        public bool Create(Customer pCustomer)
+        public bool Create(Seller pSeller)
         {
-            return _Repository.Create(pCustomer);
+            return _Repository.Create(pSeller);
         }
 
         public bool Delete(int pDocument)
@@ -25,19 +25,19 @@ namespace InvoicingBusiness.Service
             return _Repository.Delete(pDocument);
         }
 
-        public IEnumerable<Customer> GetAll()
+        public IEnumerable<Seller> GetAll()
         {
             return _Repository.GetAll();
         }
 
-        public Customer GetByDocument(int pDocument)
+        public Seller GetByDocument(int pDocument)
         {
             return _Repository.GetByDocument(pDocument);
         }
 
-        public bool Update(Customer pCustomer)
+        public bool Update(Seller pSeller)
         {
-            return _Repository.Update(pCustomer);
+            return _Repository.Update(pSeller);
         }
 
         #endregion Methods
