@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-
+import { SharedModule } from './shared/shared-module';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,9 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
