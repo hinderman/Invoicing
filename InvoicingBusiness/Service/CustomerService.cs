@@ -15,14 +15,14 @@ namespace InvoicingBusiness.Service
 
         #region Methods
 
-        public bool Create(Customer pCustomer)
+        public void Create(Customer pCustomer)
         {
-            return _Repository.Create(pCustomer);
+            _Repository.Create(pCustomer);
         }
 
-        public bool Delete(int pDocument)
+        public void Delete(int pId)
         {
-            return _Repository.Delete(pDocument);
+            _Repository.Delete(pId);
         }
 
         public IEnumerable<Customer> GetAll()
@@ -30,14 +30,14 @@ namespace InvoicingBusiness.Service
             return _Repository.GetAll();
         }
 
-        public Customer GetByDocument(int pDocument)
+        public Customer GetById(int pId)
         {
-            return _Repository.GetByDocument(pDocument);
+            return _Repository.GetById(pId);
         }
 
-        public bool Update(Customer pCustomer)
+        public void Update(Customer pCustomer)
         {
-            return _Repository.Update(pCustomer);
+            _Repository.Update(pCustomer);
         }
 
         #endregion Methods

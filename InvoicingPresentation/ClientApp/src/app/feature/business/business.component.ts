@@ -5,4 +5,4 @@ import { Component, OnInit } from '@angular/core';
   template: '<router-outlet></router-outlet>',
   styleUrls: []
 })
-export class CustomerComponent { }
+export class BusinessComponent {}

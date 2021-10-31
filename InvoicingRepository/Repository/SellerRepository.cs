@@ -11,7 +11,7 @@ using System.Transactions;
 
 namespace InvoicingRepository.Repository
 {
-    internal class SellerRepository : ISellerRepository
+    public class SellerRepository : ISellerRepository
     {
         private readonly IOptions<ConnectionStrings> _ConnectionStrings;
 

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace InvoicingData.Model
+﻿namespace InvoicingPresentation.Model
 {
     public class Customer
     {

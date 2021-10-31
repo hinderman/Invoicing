@@ -5,14 +5,14 @@ namespace InvoicingRepository.Interface
 {
     public interface ICustomerRepository
     {
-        bool Create(Customer pCustomer);
+        void Create(Customer pCustomer);
 
         IEnumerable<Customer> GetAll();
 
-        Customer GetByDocument(int pDocument);
+        Customer GetById(int pId);
 
-        bool Delete(int pDocument);
+        void Delete(int pId);
 
-        bool Update(Customer pCustomer);
+        void Update(Customer pCustomer);
     }
 }

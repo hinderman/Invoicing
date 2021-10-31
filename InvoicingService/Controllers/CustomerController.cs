@@ -6,7 +6,6 @@ using System.Collections.Generic;
 
 namespace InvoicingService.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class CustomerController : ControllerBase
     {
@@ -18,16 +17,16 @@ namespace InvoicingService.Controllers
 
         [HttpPost]
         [Route("Api/Customer/Create")]
-        public bool Create([FromBody] Customer pCustomer)
+        public void Create([FromBody] Customer pCustomer)
         {
-            return _Service.Create(pCustomer);
+            _Service.Create(pCustomer);
         }
 
         [HttpDelete]
         [Route("Api/Customer/Delete")]
-        public bool Delete(int pDocument)
+        public void Delete(int pId)
         {
-            return _Service.Delete(pDocument);
+            _Service.Delete(pId);
         }
 
         [HttpGet]
@@ -38,17 +37,17 @@ namespace InvoicingService.Controllers
         }
 
         [HttpGet]
-        [Route("Api/Customer/GetByDocument")]
-        public Customer GetByDocument(int pDocument)
+        [Route("Api/Customer/GetById")]
+        public Customer GetById(int pId)
         {
-            return _Service.GetByDocument(pDocument);
+            return _Service.GetById(pId);
         }
 
         [HttpPut]
         [Route("Api/Customer/Update")]
-        public bool Update(Customer pCustomer)
+        public void Update([FromBody]Customer pCustomer)
         {
-            return _Service.Update(pCustomer);
+            _Service.Update(pCustomer);
         }
     }
 }

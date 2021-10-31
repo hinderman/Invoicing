@@ -1,0 +1,30 @@
+<section>
+  <div class="contentBx">
+    <div class="formBx">
+      <form>
+        <div class="inputBx">
+          <span>document</span>
+          <input type="text" id="document" [(ngModel)]="customer.document" name="document">
+        </div>
+        <div class="inputBx">
+          <span>name</span>
+          <input type="text" id="firstName" [(ngModel)]="customer.firstName" name="firstName">
+        </div>
+        <div class="inputBx">
+          <span>status</span>
+          <input type="text" id="lastName" [(ngModel)]="customer.lastName" name="lastName">
+        </div>
+        <div class="inputBx">
+          <span>edad</span>
+          <input type="text" id="age" [(ngModel)]="customer.age" name="age">
+        </div>
+        <button *ngIf="!customer.id else updateForm" (click)='createCustomer()'>save</button>
+        <div class="inputBx">
+          <ng-template #updateForm>
+            <button (click)='updateCustomer()'>update</button>
+          </ng-template>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

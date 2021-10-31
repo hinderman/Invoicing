@@ -27,6 +27,10 @@ namespace InvoicingService
 
             // Injeciones
             pIServiceCollection.AddScoped<ICustomerRepository, CustomerRepository>();
+            pIServiceCollection.AddScoped<ICategoryRepository, CategoryRepository>();
+            pIServiceCollection.AddScoped<IInvoiceRepository, InvoiceRepository>();
+            pIServiceCollection.AddScoped<IProductRepository, ProductRepository>();
+            pIServiceCollection.AddScoped<ISellerRepository, SellerRepository>();
         }
 
         public void Configure(IApplicationBuilder pIApplicationBuilder, IWebHostEnvironment pIWebHostEnvironment)

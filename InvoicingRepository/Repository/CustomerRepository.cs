@@ -7,7 +7,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Transactions;
 
 namespace InvoicingRepository.Repository
 {
@@ -27,9 +26,8 @@ namespace InvoicingRepository.Repository
         /// </summary>
         /// <param name="pCustomer"></param>
         /// <returns> Retorna true si la creacion en correcta o false si se presento algún error al momento de la creación </returns>
-        public bool Create(Customer pCustomer)
+        public void Create(Customer pCustomer)
         {
-            bool bolResult = false;
             string strCustomerJson = JsonConvert.SerializeObject(pCustomer, Formatting.Indented);
             using (SqlConnection _SqlConnection = new(_ConnectionStrings.Value.DefaultConnection))
             {
@@ -44,14 +42,8 @@ namespace InvoicingRepository.Repository
                         };
 
                         _SqlCommand.Parameters.AddWithValue("@CustomerJson", strCustomerJson);
+                        _SqlCommand.ExecuteReader();
 
-                        using (SqlDataReader _SqlDataReader = _SqlCommand.ExecuteReader())
-                        {
-                            while (_SqlDataReader.Read())
-                            {
-                                bolResult = _SqlDataReader.GetBoolean(0);
-                            }
-                        }
                     }
                     catch (Exception exception)
                     {
@@ -63,7 +55,6 @@ namespace InvoicingRepository.Repository
                     _SqlConnection.Close();
                     _SqlConnection.Dispose();
                 }
-                return bolResult;
             }
         }
 
@@ -72,52 +63,33 @@ namespace InvoicingRepository.Repository
         /// </summary>
         /// <param name="pDocument"></param>
         /// <returns> Retorna true si la eliminación en correcta o false si se presento algún error al momento de la eliminación </returns>
-        public bool Delete(int pDocument)
+        public void Delete(int pId)
         {
-            bool bolResult = false;
-            //Se declara una transaccion para evitar otros movimientos al momento de la actualización
-            using (TransactionScope _TransactionScope = new())
+            using (SqlConnection _SqlConnection = new(_ConnectionStrings.Value.DefaultConnection))
             {
-                using (SqlConnection _SqlConnection = new(_ConnectionStrings.Value.DefaultConnection))
+                try
                 {
                     try
                     {
-                        try
+                        _SqlConnection.Open();
+                        SqlCommand _SqlCommand = new("dbo.aSp_DeleteCustomerById", _SqlConnection)
                         {
-                            _SqlConnection.Open();
-                            SqlCommand _SqlCommand = new("UPDATE dbo.Customer SET State = 0 WHERE Document = @Document", _SqlConnection)
-                            {
-                                CommandType = CommandType.Text
-                            };
+                            CommandType = CommandType.StoredProcedure
+                        };
 
-                            _SqlCommand.Parameters.Add(new SqlParameter("@Document", pDocument));
+                        _SqlCommand.Parameters.AddWithValue("@Id", SqlDbType.Int).Value = pId;
+                        _SqlCommand.ExecuteReader();
 
-                            var returnValue = _SqlCommand.ExecuteScalar();
-
-                            if (returnValue != null)
-                            {
-                                bolResult = true;
-                            }
-
-                            using (SqlDataReader _SqlDataReader = _SqlCommand.ExecuteReader())
-                            {
-                                while (_SqlDataReader.Read())
-                                {
-                                    bolResult = _SqlDataReader.GetBoolean(0);
-                                }
-                            }
-                        }
-                        catch (Exception exception)
-                        {
-                            throw new Exception(string.Concat("Delete(int pDocument) Exception: ", exception.Message));
-                        }
                     }
-                    finally
+                    catch (Exception exception)
                     {
-                        _SqlConnection.Close();
-                        _SqlConnection.Dispose();
+                        throw new Exception(string.Concat("Delete(int pId) Exception: ", exception.Message));
                     }
-                    return bolResult;
+                }
+                finally
+                {
+                    _SqlConnection.Close();
+                    _SqlConnection.Dispose();
                 }
             }
         }
@@ -147,7 +119,11 @@ namespace InvoicingRepository.Repository
                             {
                                 lstCustomer.Add(new Customer()
                                 {
-                                    Document = _SqlDataReader.GetInt32(0)
+                                    Id = _SqlDataReader.GetInt32(0),
+                                    Document = _SqlDataReader.GetInt32(1),
+                                    FirstName = _SqlDataReader.GetString(2),
+                                    LastName = _SqlDataReader.GetString(3),
+                                    Age = _SqlDataReader.GetInt32(4)
                                 });
                             }
                         }
@@ -171,7 +147,7 @@ namespace InvoicingRepository.Repository
         /// </summary>
         /// <param name="pDocument"></param>
         /// <returns> Retorna la información del cliente </returns>
-        public Customer GetByDocument(int pDocument)
+        public Customer GetById(int pId)
         {
             Customer objCustomer = new();
             using (SqlConnection _SqlConnection = new(_ConnectionStrings.Value.DefaultConnection))
@@ -181,24 +157,28 @@ namespace InvoicingRepository.Repository
                     try
                     {
                         _SqlConnection.Open();
-                        SqlCommand _SqlCommand = new("dbo.aSp_GetCustomerByDocument", _SqlConnection)
+                        SqlCommand _SqlCommand = new("dbo.aSp_GetCustomerById", _SqlConnection)
                         {
                             CommandType = CommandType.StoredProcedure
                         };
 
-                        _SqlCommand.Parameters.AddWithValue("@Document", pDocument);
+                        _SqlCommand.Parameters.AddWithValue("@Id", pId);
 
                         using (SqlDataReader _SqlDataReader = _SqlCommand.ExecuteReader())
                         {
                             while (_SqlDataReader.Read())
                             {
-                                objCustomer.Document = _SqlDataReader.GetInt32(0);
+                                objCustomer.Id = _SqlDataReader.GetInt32(0);
+                                objCustomer.Document = _SqlDataReader.GetInt32(1);
+                                objCustomer.FirstName = _SqlDataReader.GetString(2);
+                                objCustomer.LastName = _SqlDataReader.GetString(3);
+                                objCustomer.Age = _SqlDataReader.GetInt32(4);
                             }
                         }
                     }
                     catch (Exception exception)
                     {
-                        throw new Exception(string.Concat("GetByDocument(int pDocument) Exception: ", exception.Message));
+                        throw new Exception(string.Concat("GetById(int pId) Exception: ", exception.Message));
                     }
                 }
                 finally
@@ -215,10 +195,9 @@ namespace InvoicingRepository.Repository
         /// </summary>
         /// <param name="pCustomer"></param>
         /// <returns> Retorna true si la actualización en correcta o false si se presento algún error al momento de la actualización </returns>
-        public bool Update(Customer pCustomer)
+        public void Update(Customer pCustomer)
         {
-            bool bolResult = false;
-            string strCustomerJson = JsonConvert.SerializeObject(pCustomer, Formatting.Indented);
+            string strCustomerJson = JsonConvert.SerializeObject(pCustomer);
             using (SqlConnection _SqlConnection = new(_ConnectionStrings.Value.DefaultConnection))
             {
                 try
@@ -232,14 +211,8 @@ namespace InvoicingRepository.Repository
                         };
 
                         _SqlCommand.Parameters.AddWithValue("@CustomerJson", strCustomerJson);
+                        _SqlCommand.ExecuteReader();
 
-                        using (SqlDataReader _SqlDataReader = _SqlCommand.ExecuteReader())
-                        {
-                            while (_SqlDataReader.Read())
-                            {
-                                bolResult = _SqlDataReader.GetBoolean(0);
-                            }
-                        }
                     }
                     catch (Exception exception)
                     {
@@ -251,7 +224,6 @@ namespace InvoicingRepository.Repository
                     _SqlConnection.Close();
                     _SqlConnection.Dispose();
                 }
-                return bolResult;
             }
         }
 
