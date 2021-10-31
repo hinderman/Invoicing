@@ -22,9 +22,7 @@ export class CustomerComponent implements OnInit {
 
   getCustomer(): void {
     this.customerService.getCustomer().pipe(tap((response: any) => {
-      (response as Customer[]).forEach((customer) => {
-        console.log(customer.firstName);
-      });
+      (response as Customer[]).forEach((customer) => { });
     })).subscribe((response) => {
       this.customers = response as Customer[];
     });
@@ -36,12 +34,3 @@ export class CustomerComponent implements OnInit {
     });
   }
 }
-
-  //getCustomerById(id: number): Observable<Customer> {
-  //  return this.http.get<Customer>(this.baseUrl + 'Customer/GetById?pId=' + id)
-  //    .pipe(catchError(err => {
-  //      this.router.navigate(['customer'])
-  //      console.log(err.error.message);
-  //      return throwError(err);
-  //    }));
-  //}

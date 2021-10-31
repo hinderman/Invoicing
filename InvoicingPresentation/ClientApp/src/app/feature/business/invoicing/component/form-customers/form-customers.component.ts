@@ -23,10 +23,9 @@ export class FormCustomersComponent implements OnInit {
       if (params.id && params.id != 0) {
         this.customer.id = params.id;
         this.customerService.getCustomerById(this.customer.id).subscribe((response) => {
-          console.log(response);
           this.customer = response;
         }, error => {
-          console.log(error)
+          alert(error);
         });
       }
     });
@@ -34,14 +33,15 @@ export class FormCustomersComponent implements OnInit {
 
   updateCustomer(): void {
     this.customerService.updateCustomer(this.customer).subscribe(() => {
-      this.router.navigate(['/Customers']);
+      alert('!Actualización exitosa¡');
+      this.router.navigate(['/']);
     });
   }
 
   createCustomer(): void {
     this.customerService.createCustomer(this.customer).subscribe((response) => {
-      alert('se creo el usuario ' + response.name + ' ' + response.lastname);
-      this.router.navigate(['Customers']);
+      alert('!Creación exitosa¡');
+      this.router.navigate(['/']);
     });
   }
 }

@@ -45,7 +45,7 @@ namespace InvoicingService.Controllers
 
         [HttpPut]
         [Route("Api/Customer/Update")]
-        public void Update([FromBody]Customer pCustomer)
+        public void Update([FromBody] Customer pCustomer)
         {
             _Service.Update(pCustomer);
         }

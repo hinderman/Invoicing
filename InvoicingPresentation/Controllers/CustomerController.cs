@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -74,8 +73,9 @@ namespace InvoicingPresentation.Controllers
                     string strCustomer = JsonConvert.SerializeObject(pCustomer);
                     HttpContent _HttpContent = new StringContent(strCustomer, Encoding.UTF8, "application/json");
                     HttpResponseMessage responseMessage = await _HttpClient.PutAsync(_Service.Value.BaseAddressApi + "Api/Customer/Update", _HttpContent);
-                    if (responseMessage.IsSuccessStatusCode)
+                    if (!responseMessage.IsSuccessStatusCode)
                     {
+                        throw new Exception(string.Concat("Error del servidor: Se presento un error al momento de la eliminación"));
                     }
                 }
             }
@@ -93,8 +93,9 @@ namespace InvoicingPresentation.Controllers
                 using (HttpClient _HttpClient = new())
                 {
                     HttpResponseMessage responseMessage = await _HttpClient.DeleteAsync(_Service.Value.BaseAddressApi + "Api/Customer/Delete?pId=" + pId);
-                    if (responseMessage.IsSuccessStatusCode)
+                    if (!responseMessage.IsSuccessStatusCode)
                     {
+                        throw new Exception(string.Concat("Error del servidor: Se presento un error al momento de la eliminación"));
                     }
                 }
             }
@@ -114,8 +115,9 @@ namespace InvoicingPresentation.Controllers
                     string strCustomer = JsonConvert.SerializeObject(pCustomer);
                     HttpContent _HttpContent = new StringContent(strCustomer, Encoding.UTF8, "application/json");
                     HttpResponseMessage responseMessage = await _HttpClient.PostAsync(_Service.Value.BaseAddressApi + "Api/Customer/Create", _HttpContent);
-                    if (responseMessage.IsSuccessStatusCode)
+                    if (!responseMessage.IsSuccessStatusCode)
                     {
+                        throw new Exception(string.Concat("Error del servidor: Se presento un error al momento de la creación"));
                     }
                 }
             }
