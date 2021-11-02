@@ -1,0 +1,33 @@
+<div class="">
+  <div class="">
+    <div class="">
+      <h2>producto</h2>
+      <a [routerLink]="['form']" class="btn">add</a>
+    </div>
+    <table *ngIf="product!.length > 0">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of product; index as i; first as isFirst">
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <button [routerLink]="['form', data.id]">fix</button>
+            <button (click)="deletePerson(data.id)">delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

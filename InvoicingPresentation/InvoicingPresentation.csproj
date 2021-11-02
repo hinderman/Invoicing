@@ -25,8 +25,59 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\feature\business\invoicing\component\category\category.component.ts" />
+    <None Remove="ClientApp\src\app\feature\business\invoicing\component\category\category.service.ts" />
+    <None Remove="ClientApp\src\app\feature\business\invoicing\component\email\email.component.ts" />
+    <None Remove="ClientApp\src\app\feature\business\invoicing\component\email\email.service.ts" />
+    <None Remove="ClientApp\src\app\feature\business\invoicing\component\form-category\form-category.component.ts" />
+    <None Remove="ClientApp\src\app\feature\business\invoicing\component\form-category\form-category.module.ts" />
+    <None Remove="ClientApp\src\app\feature\business\invoicing\component\form-invoicing\form-invoicing.component.ts" />
+    <None Remove="ClientApp\src\app\feature\business\invoicing\component\form-invoicing\form-invoicing.module.ts" />
+    <None Remove="ClientApp\src\app\feature\business\invoicing\component\form-product\form-product.component.ts" />
+    <None Remove="ClientApp\src\app\feature\business\invoicing\component\form-product\form-product.module.ts" />
+    <None Remove="ClientApp\src\app\feature\business\invoicing\component\invoicing\invoicing.component.ts" />
+    <None Remove="ClientApp\src\app\feature\business\invoicing\component\invoicing\invoicing.service.ts" />
+    <None Remove="ClientApp\src\app\feature\business\invoicing\component\phone\phone.component.ts" />
+    <None Remove="ClientApp\src\app\feature\business\invoicing\component\phone\phone.service.ts" />
+    <None Remove="ClientApp\src\app\feature\business\invoicing\component\product\product.component.ts" />
+    <None Remove="ClientApp\src\app\feature\business\invoicing\component\product\product.service.ts" />
+    <None Remove="ClientApp\src\app\shared\component\sidebar\sidebar.service.ts" />
+    <None Remove="ClientApp\src\app\shared\model\category\category.ts" />
+    <None Remove="ClientApp\src\app\shared\model\email\email.ts" />
+    <None Remove="ClientApp\src\app\shared\model\invoicing\invoicing.ts" />
+    <None Remove="ClientApp\src\app\shared\model\phone\phone.ts" />
+    <None Remove="ClientApp\src\app\shared\model\product\product.ts" />
+    <None Remove="ClientApp\src\app\shared\model\sidebar\sidebar.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ClientApp\src\app\core\" />
-    <Folder Include="ClientApp\src\app\feature\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\feature\business\invoicing\component\category\category.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\feature\business\invoicing\component\category\category.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\feature\business\invoicing\component\email\email.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\feature\business\invoicing\component\email\email.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\feature\business\invoicing\component\form-category\form-category.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\feature\business\invoicing\component\form-category\form-category.module.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\feature\business\invoicing\component\form-invoicing\form-invoicing.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\feature\business\invoicing\component\form-invoicing\form-invoicing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\feature\business\invoicing\component\form-product\form-product.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\feature\business\invoicing\component\form-product\form-product.module.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\feature\business\invoicing\component\invoicing\invoicing.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\feature\business\invoicing\component\invoicing\invoicing.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\feature\business\invoicing\component\phone\phone.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\feature\business\invoicing\component\phone\phone.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\feature\business\invoicing\component\product\product.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\feature\business\invoicing\component\product\product.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\component\sidebar\sidebar.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\model\category\category.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\model\email\email.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\model\invoicing\invoicing.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\model\phone\phone.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\model\product\product.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\model\sidebar\sidebar.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

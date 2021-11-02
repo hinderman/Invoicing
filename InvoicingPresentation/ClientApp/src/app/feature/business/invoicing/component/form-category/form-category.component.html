@@ -1,0 +1,18 @@
+<section>
+  <div class="">
+    <div class="">
+      <form>
+        <div class="">
+          <span>categoria</span>
+          <input type="text" id="id" [(ngModel)]="category.id" name="id">
+        </div>
+        <button *ngIf="!category.id else updateForm" (click)='createInvoicing()'>save</button>
+        <div class="inputBx">
+          <ng-template #updateForm>
+            <button (click)='updateInvoicing()'>update</button>
+          </ng-template>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

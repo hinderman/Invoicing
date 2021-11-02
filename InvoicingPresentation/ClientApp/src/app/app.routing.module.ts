@@ -14,7 +14,7 @@ const routes: Routes = [
       },
       {
         path: 'business',
-        loadChildren: () => import('./feature/business/business.module').then( (m) => m.BusinessModule)
+        loadChildren: () => import('./feature/business/business.module').then((m) => m.BusinessModule)
       }
     ]
   },
@@ -24,4 +24,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

@@ -1,0 +1,16 @@
+<h1>Customer</h1>
+<dx-data-grid id="gridContainer" [dataSource]="person" keyExpr="id" [rowAlternationEnabled]="true" (onRowInserting)="createPerson($event)" (onRowUpdated)="updatePerson($event)" (onRowRemoved)="deletePerson($event)">
+  <dxo-export [enabled]="true"></dxo-export>
+  <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true" [refreshMode]="refreshMode"></dxo-editing>
+  <dxi-column dataField="document" dataType="number"><dxi-validation-rule type="required" message="The Document is required."></dxi-validation-rule></dxi-column>
+  <dxi-column dataField="firstName" dataType="string"><dxi-validation-rule type="required" message="The First Name is required."></dxi-validation-rule></dxi-column>
+  <dxi-column dataField="lastName" dataType="string"><dxi-validation-rule type="required" message="The Last Name is required."></dxi-validation-rule></dxi-column>
+  <dxi-column dataField="age" dataType="number"><dxi-validation-rule type="required" message="The Age is required."></dxi-validation-rule></dxi-column>
+  <dxo-master-detail [enabled]="true" [template]="'detail'"></dxo-master-detail>
+  <div *dxTemplate="let dataDetail of 'detail'">
+    <app-phone [idPerson]="dataDetail.data.id"></app-phone>
+    <app-email [idPerson]="dataDetail.data.id"></app-email>
+  </div>
+</dx-data-grid>
+<dx-toast [(visible)]="isVisible" [type]="type" [message]="message"></dx-toast>
+<dx-load-panel [position]="loadPanelPosition" [visible]="isLoading"></dx-load-panel>

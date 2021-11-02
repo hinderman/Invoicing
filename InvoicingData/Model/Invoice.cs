@@ -10,8 +10,8 @@ namespace InvoicingData.Model
 
         public DateTime Hour { get; set; }
 
-        public Customer Customer { get; set; }
+        public Person Customer { get; set; }
 
-        public Seller Seller { get; set; }
+        public Person Seller { get; set; }
     }
 }

@@ -1,0 +1,28 @@
+<div class="">
+  <div class="">
+    <div class="">
+      <h2>Invoicing</h2>
+      <a [routerLink]="['form']" class="btn">add</a>
+    </div>
+    <table *ngIf="invoicing!.length > 0">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of invoicing; index as i; first as isFirst">
+          <td>{{ data.id }}</td>
+          <td>
+            <button [routerLink]="['form', data.id]">fix</button>
+            <button (click)="deleteInvoicing(data.id)">delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

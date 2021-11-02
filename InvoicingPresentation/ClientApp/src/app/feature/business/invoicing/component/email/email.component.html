@@ -1,0 +1,8 @@
+<h4>Email addresses</h4>
+<dx-data-grid id="gridContainer" [dataSource]="email" keyExpr="id" [rowAlternationEnabled]="true" (onRowInserting)="createEmail($event)" (onRowUpdated)="updateEmail($event)" (onRowRemoved)="deleteEmail($event)">
+  <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true" [refreshMode]="refreshMode"></dxo-editing>
+  <dxi-column dataField="emailAddress" dataType="text">
+  </dxi-column>
+</dx-data-grid>
+<dx-toast [(visible)]="isVisible" [type]="type" [message]="message"></dx-toast>
+<dx-load-panel [position]="loadPanelPosition" [visible]="isLoading"></dx-load-panel>

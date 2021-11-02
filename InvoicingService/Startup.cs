@@ -26,11 +26,12 @@ namespace InvoicingService
             pIServiceCollection.AddControllers();
 
             // Injeciones
-            pIServiceCollection.AddScoped<ICustomerRepository, CustomerRepository>();
+            pIServiceCollection.AddScoped<IPersonRepository, PersonRepository>();
             pIServiceCollection.AddScoped<ICategoryRepository, CategoryRepository>();
             pIServiceCollection.AddScoped<IInvoiceRepository, InvoiceRepository>();
             pIServiceCollection.AddScoped<IProductRepository, ProductRepository>();
-            pIServiceCollection.AddScoped<ISellerRepository, SellerRepository>();
+            pIServiceCollection.AddScoped<IPhoneRepository, PhoneRepository>();
+            pIServiceCollection.AddScoped<IEmailRepository, EmailRepository>();
         }
 
         public void Configure(IApplicationBuilder pIApplicationBuilder, IWebHostEnvironment pIWebHostEnvironment)

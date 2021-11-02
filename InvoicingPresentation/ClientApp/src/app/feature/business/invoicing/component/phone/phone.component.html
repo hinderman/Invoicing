@@ -1,0 +1,10 @@
+<h4>Phone numbers</h4>
+<dx-data-grid id="gridContainer" [dataSource]="phone" keyExpr="id" [rowAlternationEnabled]="true" (onRowInserting)="createPhone($event)" (onRowUpdated)="updatePhone($event)" (onRowRemoved)="deletePhone($event)">
+  <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true" [refreshMode]="refreshMode"></dxo-editing>
+  <dxi-column dataField="number" dataType="text">
+    <dxi-validation-rule type="required"></dxi-validation-rule>
+    <dxi-validation-rule type="pattern" [pattern]="pattern" message="Incorrect format!"></dxi-validation-rule>
+  </dxi-column>
+</dx-data-grid>
+<dx-toast [(visible)]="isVisible" [type]="type" [message]="message"></dx-toast>
+<dx-load-panel [position]="loadPanelPosition" [visible]="isLoading"></dx-load-panel>

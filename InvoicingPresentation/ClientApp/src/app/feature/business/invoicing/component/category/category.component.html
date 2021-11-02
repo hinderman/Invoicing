@@ -1,0 +1,31 @@
+<div class="">
+  <div class="">
+    <div class="">
+      <h2>Categoria</h2>
+      <a [routerLink]="['form']" class="btn">add</a>
+    </div>
+    <table *ngIf="category!.length > 0">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>document</th>
+          <th>name</th>
+          <th>lastname</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of category; index as i; first as isFirst">
+          <td>{{ data.id }}</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <button [routerLink]="['form', data.id]">fix</button>
+            <button (click)="deletePerson(data.id)">delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

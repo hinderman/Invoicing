@@ -1,0 +1,18 @@
+<section>
+  <div class="">
+    <div class="">
+      <form>
+        <div class="">
+          <span>productos</span>
+          <input type="text" id="id" [(ngModel)]="product.id" name="id">
+        </div>
+        <button *ngIf="!product.id else updateForm" (click)='createProduct()'>save</button>
+        <div class="inputBx">
+          <ng-template #updateForm>
+            <button (click)='updateProduct()'>update</button>
+          </ng-template>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

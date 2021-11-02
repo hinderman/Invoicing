@@ -20,7 +20,7 @@ const routes: Routes = [
         }
       ],
     },
-  ];
+];
 
 @NgModule({
   declarations: [
@@ -31,4 +31,5 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ]
 })
+
 export class BusinessModule { }

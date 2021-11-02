@@ -1,37 +1,57 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { CustomerComponent } from './component/customer/customer.component';
-import { FormCustomersComponent } from './component/form-customers/form-customers.component';
-import { FormCustomersModule } from './component/form-customers/form-customers.module';
-
+import { RouterModule, Routes } from '@angular/router';
+import { DxButtonModule, DxDataGridModule, DxLoadPanelModule, DxTemplateModule, DxToastModule } from 'devextreme-angular';
+import { EmailComponent } from './component/email/email.component';
+import { FormPersonModule } from './component/form-person/form-person.module';
+import { PersonComponent } from './component/person/person.component';
+import { PhoneComponent } from './component/phone/phone.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: CustomerComponent,
+    component: PersonComponent,
     children: [
       {
         path: 'form',
-        loadChildren: () => import('./component/form-customers/form-customers.module').then( (m) => m.FormCustomersModule)
+        loadChildren: () => import('./component/form-person/form-person.module').then((m) => m.FormPersonModule)
       },
+      {
+        path: 'formInvoicing',
+        loadChildren: () => import('./component/form-invoicing/form-invoicing.module').then((m) => m.FormInvoicingModule)
+      },
+      {
+        path: 'formCategory',
+        loadChildren: () => import('./component/form-category/form-category.module').then((m) => m.FormCategoryModule)
+      },
+      {
+        path: 'formProduct',
+        loadChildren: () => import('./component/form-product/form-product.module').then((m) => m.FormProductModule)
+      }
     ],
   }
 ];
 
 @NgModule({
   declarations: [
-    CustomerComponent,
+    PersonComponent,
+    PhoneComponent,
+    EmailComponent
   ],
   imports: [
     CommonModule,
+    DxTemplateModule,
     FormsModule,
-    FormCustomersModule,
+    FormPersonModule,
     ReactiveFormsModule,
+    DxButtonModule,
+    DxDataGridModule,
+    DxToastModule,
+    DxLoadPanelModule,
     RouterModule.forChild(routes)
   ],
   providers: [],
 })
+
 export class InvoicingModule {}

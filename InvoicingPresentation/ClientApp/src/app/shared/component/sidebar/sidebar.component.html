@@ -1,32 +1,20 @@
-<div class="navigation">
-    <ul>
-        <li>
-            <a>
-                <span class="icon">
-                </span>
-                <span class="title">invoicing online</span>
-            </a>
-        </li>
-        <li>
-            <a>
-                <span class="icon">
-                </span>
-                <span class="title">customers</span>
-            </a>
-        </li>
-        <li>
-            <a>
-                <span class="icon">
-                </span>
-                <span class="title">sellers</span>
-            </a>
-        </li>
-        <li>
-            <a>
-                <span class="icon">
-                </span>
-                <span class="title">invoices</span>
-            </a>
-        </li>
-    </ul>
+<div class="col-12">
+  <dx-toolbar [items]="toolbarContent"></dx-toolbar>
+  <dx-drawer [openedStateMode]="openedStateMode" [position]="position" [revealMode]="revealMode" template="template" [(opened)]="isDrawerOpen" [closeOnOutsideClick]="true" o998>
+    <div *dxTemplate="let data of 'template'">
+      <dx-list class="panel-list" [dataSource]="sidebar" [hoverStateEnabled]="true" [activeStateEnabled]="true" [focusStateEnabled]="true" (onSelectionChanged)="this.isDrawerOpen = false" itemTemplate="links">
+        <div *dxTemplate="let link of 'links'">
+          <a [routerLink]="['/' + link.path]">
+            <div>
+              <div class="dx-list-item-icon-container">
+                <i class="dx-icon dx-list-item-icon dx-icon-{{link.icon}}"></i>
+              </div>
+              <span>{{ link.text }}</span>
+            </div>
+          </a>
+        </div>
+      </dx-list>
+    </div>
+    <router-outlet></router-outlet>
+  </dx-drawer>
 </div>
