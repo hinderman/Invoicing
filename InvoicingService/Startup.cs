@@ -32,6 +32,7 @@ namespace InvoicingService
             pIServiceCollection.AddScoped<IProductRepository, ProductRepository>();
             pIServiceCollection.AddScoped<IPhoneRepository, PhoneRepository>();
             pIServiceCollection.AddScoped<IEmailRepository, EmailRepository>();
+            pIServiceCollection.AddScoped<IAddressRepository, AddressRepository>();
         }
 
         public void Configure(IApplicationBuilder pIApplicationBuilder, IWebHostEnvironment pIWebHostEnvironment)

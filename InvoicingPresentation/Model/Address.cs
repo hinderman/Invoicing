@@ -1,4 +1,4 @@
-﻿namespace InvoicingData.Model
+﻿namespace InvoicingPresentation.Model
 {
     public class Address
     {

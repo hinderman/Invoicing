@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { DxButtonModule, DxDataGridModule, DxLoadPanelModule, DxTemplateModule, DxToastModule } from 'devextreme-angular';
+import { AddressComponent } from './component/address/address.component';
 import { EmailComponent } from './component/email/email.component';
 import { FormPersonModule } from './component/form-person/form-person.module';
 import { PersonComponent } from './component/person/person.component';
@@ -37,7 +38,8 @@ const routes: Routes = [
   declarations: [
     PersonComponent,
     PhoneComponent,
-    EmailComponent
+    EmailComponent,
+    AddressComponent
   ],
   imports: [
     CommonModule,

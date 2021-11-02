@@ -10,6 +10,7 @@
   <div *dxTemplate="let dataDetail of 'detail'">
     <app-phone [idPerson]="dataDetail.data.id"></app-phone>
     <app-email [idPerson]="dataDetail.data.id"></app-email>
+    <app-address [idPerson]="dataDetail.data.id"></app-address>
   </div>
 </dx-data-grid>
 <dx-toast [(visible)]="isVisible" [type]="type" [message]="message"></dx-toast>
